@@ -59,7 +59,7 @@
 }
 
 .actionMenu {
-  @apply w-[160px] p-2 rounded-lg menu-drop-shadow absolute top-0 bg-white left-0;
+  @apply w-[160px] p-2 rounded-lg menu-drop-shadow absolute bg-white left-0;
 }
 .actionMenuModify {
   @apply py-[5px] text-xs font-normal text-[#787878];

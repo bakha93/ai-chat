@@ -3,7 +3,7 @@ import LongerIcon from "@/assets/SvgIcons/LongerIcon.tsx";
 import SimplerIcon from "@/assets/SvgIcons/SimplerIcon.tsx";
 import CasualIcon from "@/assets/SvgIcons/CasualIcon.tsx";
 import Professional from "@/assets/SvgIcons/Professional.tsx";
-import { useEffect, useRef } from "react";
+import {useEffect, useLayoutEffect, useMemo, useRef, useState} from "react";
 import { useRegenerateLastMessageQuery } from "@/api";
 import { useChatStore } from "@/components/CopilotChat/store.ts";
 import { ChatMessage } from "openai-fetch";
@@ -45,6 +45,7 @@ export const ActionMenu = ({ handleCloseMenu }: Props) => {
   const menuRef = useRef<HTMLDivElement>(null);
   const setMessage = useChatStore((state) => state.setMessage);
   const messages = useChatStore((state) => state.messages);
+  const [modalPosition, setModalPosition] = useState('')
 
   const { inputMessage } = useRegenerateLastMessageQuery(setMessage);
 
@@ -72,11 +73,20 @@ export const ActionMenu = ({ handleCloseMenu }: Props) => {
     };
   }, []);
 
+  useLayoutEffect(() => {
+    if(menuRef.current){
+      const shouldDisplayOnTop = menuRef.current?.getBoundingClientRect().bottom + 100 > window.innerHeight;
+      setModalPosition(!shouldDisplayOnTop ? 'top' : 'bottom')
+    }
+  },[])
+
+
   return (
-    <div ref={menuRef} className={styles.actionMenu}>
+    <div ref={menuRef} className={`${styles.actionMenu} ${modalPosition}-0`}>
       <div className={styles.actionMenuModify}>Modify:</div>
       {MENU_ITEMS.map((el) => (
         <div
+          key={el.text}
           onClick={() => {
             handleMenuActionClick(el.regenerateAction);
           }}
