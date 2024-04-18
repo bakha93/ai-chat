@@ -76,13 +76,13 @@ export const ActionMenu = ({ handleCloseMenu }: Props) => {
   useLayoutEffect(() => {
     if(menuRef.current){
       const shouldDisplayOnTop = menuRef.current?.getBoundingClientRect().bottom + 100 > window.innerHeight;
-      setModalPosition(!shouldDisplayOnTop ? 'top' : 'bottom')
+      setModalPosition(!shouldDisplayOnTop ? 'top-0' : 'bottom-0')
     }
   },[])
 
 
   return (
-    <div ref={menuRef} className={`${styles.actionMenu} ${modalPosition}-0`}>
+    <div ref={menuRef} className={`${styles.actionMenu} ${modalPosition}`}>
       <div className={styles.actionMenuModify}>Modify:</div>
       {MENU_ITEMS.map((el) => (
         <div
