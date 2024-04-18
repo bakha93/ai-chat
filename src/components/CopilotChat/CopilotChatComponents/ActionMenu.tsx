@@ -3,7 +3,7 @@ import LongerIcon from "@/assets/SvgIcons/LongerIcon.tsx";
 import SimplerIcon from "@/assets/SvgIcons/SimplerIcon.tsx";
 import CasualIcon from "@/assets/SvgIcons/CasualIcon.tsx";
 import Professional from "@/assets/SvgIcons/Professional.tsx";
-import {useEffect, useLayoutEffect, useMemo, useRef, useState} from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { useRegenerateLastMessageQuery } from "@/api";
 import { useChatStore } from "@/components/CopilotChat/store.ts";
 import { ChatMessage } from "openai-fetch";
